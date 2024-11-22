@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#gesture {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+#gesture.correct {
+    animation: zoomIn 0.5s ease-in-out;
+    border-color: #28a745;
+}
+
+#gesture.incorrect {
+    animation: shake 0.5s ease-in-out;
+    border-color: #dc3545;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+body {
+    margin: 0;
+    font-family: "Press Start 2P", Arial, sans-serif;
+    background: linear-gradient(180deg, #5AD0FF, #87CEFA); 
+    color: #333;
+    text-align: center;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #F1F1F1;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px #A9A9A9;
+}
+
+h1 {
+    color: #FF6347; 
+    margin-bottom: 20px;
+}
+
+#game-screen {
+    padding: 20px;
+    background: #FFF;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+button {
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#hangman {
+    margin: 20px auto;
+    width: 200px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#gesture-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.gesture-box {
+    width: 200px; 
+    height: 200px; 
+    border: 2px solid #000; 
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto;
+    box-shadow: 5px 5px #A9A9A9;
+}
+
+#end-screen h2 {
+    color: #FF6347;
+    margin-bottom: 20px;
+}
+
+#restart-button {
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#restart-button:hover {
+    transform: scale(1.1);
+}

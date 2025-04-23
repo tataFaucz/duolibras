@@ -19,12 +19,12 @@ function generateAlphabetNumbers() {
 
 function generateGreetings() {
     return [
-        //{ name: "Bomdia", image: `${imagePath}saudacao/bom_dia.jpg` },
+        { name: "Bomdia", image: `${imagePath}saudacao/bom_dia.jpg` },
         { name: "Boatarde", image: `${imagePath}saudacao/boa_tarde.jpg` },
         { name: "Boanoite", image: `${imagePath}saudacao/boa_noite.jpg` },
         { name: "Obrigado", image: `${imagePath}saudacao/obrigado.jpg` },
-        /*{ name: "Desculpa", image: `${imagePath}saudacao/desculpe.png` },
-        { name: "Porfavor", image: `${imagePath}saudacao/por_favor.png` },*/
+        { name: "Desculpa", image: `${imagePath}saudacao/desculpe.png` },
+        { name: "Porfavor", image: `${imagePath}saudacao/por_favor.png` },
         { name: "Oi", image: `${imagePath}saudacao/oi.jpg` },
         { name: "Tchau", image: `${imagePath}saudacao/tchau.jpg` },
         { name: "Tudobem", image: `${imagePath}saudacao/tudo_bem.jpg` },
@@ -35,12 +35,12 @@ function generateIntroduction() {
     return [
         { name: "Qual o seu nome?", image: `${imagePath}apresentacao/seu_nome.jpg` },
         { name: "Prazer em te conhecer", image: `${imagePath}apresentacao/prazer_conhecer.jpg` },
-        /*{ name: "Quando?", image: `${imagePath}apresentacao/quando.jpg` },
+        { name: "Quando?", image: `${imagePath}apresentacao/quando.jpg` },
         { name: "Quem?", image: `${imagePath}apresentacao/quem.jpg` },
         { name: "Perguntar", image: `${imagePath}apresentacao/perguntar.jpg` },
         { name: "Por quê?", image: `${imagePath}apresentacao/porque.jpg` },
         { name: "O que?", image: `${imagePath}apresentacao/oque.jpg` },
-        { name: "Onde?", image: `${imagePath}apresentacao/onde.jpg` },*/
+        { name: "Onde?", image: `${imagePath}apresentacao/onde.jpg` },
     ];
 }
 

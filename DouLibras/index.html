@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" xml:lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DuoLibras: Um jogo educativo para aprender Libras de forma interativa e divertida.">
     <title>DuoLibras</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <noscript>
+        <p style="color: red; text-align: center;">
+            Este jogo requer JavaScript habilitado para funcionar corretamente. Por favor, ative o JavaScript no seu navegador.
+        </p>
+    </noscript>
     <div id="game-container">
         <h1>DuoLibras</h1>
         <div id="game-screen">
             <p id="introduction">Bem-vindo ao DuoLibras! Clique em "Iniciar" para começar a aprender e jogar.</p>
-            <button id="start-button">Iniciar</button>
+            <button id="start-button" aria-label="Iniciar o jogo">Iniciar</button>
         </div>
         <div id="end-screen" style="display: none;">
             <h2>Parabéns!</h2>
             <p>Você concluiu todas as fases do DuoLibras!</p>
-            <button id="restart-button">Jogar Novamente</button>
+            <button id="restart-button" aria-label="Reiniciar o jogo">Jogar Novamente</button>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
-</html>

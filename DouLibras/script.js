@@ -73,7 +73,6 @@ function showTutorial(phaseIndex) {
     const phase = phases[phaseIndex];
     const gameScreen = document.getElementById("game-screen");
 
-    // Cria o conteúdo do tutorial
     gameScreen.innerHTML = `
         <h2>Tutorial: ${phase.name}</h2>
         <div id="tutorial-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
@@ -87,7 +86,6 @@ function showTutorial(phaseIndex) {
         <button id="start-phase-button" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Iniciar Fase</button>
     `;
 
-    // Adiciona evento para iniciar a fase
     const startPhaseButton = document.getElementById("start-phase-button");
     startPhaseButton.addEventListener("click", () => startPhase(phaseIndex));
 }
@@ -156,9 +154,94 @@ function startStandardPhase(phase, phaseIndex) {
     loadGesture();
 }
 
+function startHangmanPhase(phase, phaseIndex) {
+    const gestures = shuffleArray(phase.gestures);
+    let currentGestureIndex = 0;
+    let progress = [];
+
+    const gameScreen = document.getElementById("game-screen");
+    gameScreen.innerHTML = `
+        <h2>${phase.name}</h2>
+        <p>Digite a letra correta para este gesto!</p>
+        <div id="gesture"></div>
+        <div id="progress"></div>
+        <input type="text" id="letter" maxlength="1" placeholder="Digite uma letra">
+        <button id="submit-letter">Enviar</button>
+        <p id="feedback"></p>
+    `;
+
+    const gestureElement = document.getElementById("gesture");
+    const progressElement = document.getElementById("progress");
+    const letterInput = document.getElementById("letter");
+    const feedback = document.getElementById("feedback");
+    const submitLetterButton = document.getElementById("submit-letter");
+
+    function loadGesture() {
+        const currentGesture = gestures[currentGestureIndex];
+        gestureElement.style.backgroundImage = `url(${currentGesture.image})`;
+        progress = Array(currentGesture.name.length).fill("_");
+        updateProgress();
+    }
+
+    function updateProgress() {
+        progressElement.textContent = progress.join(" ");
+    }
+
+    function checkLetter() {
+        const letter = letterInput.value.trim().toLowerCase();
+        const currentGesture = gestures[currentGestureIndex];
+        const correctName = currentGesture.name.toLowerCase();
+
+        if (!letter || letter.length !== 1) {
+            feedback.textContent = "Por favor, insira uma única letra.";
+            return;
+        }
+
+        if (correctName.includes(letter)) {
+            feedback.textContent = "Letra correta!";
+            sounds.correct.play();
+
+            for (let i = 0; i < correctName.length; i++) {
+                if (correctName[i] === letter) {
+                    progress[i] = letter;
+                }
+            }
+            updateProgress();
+
+            if (progress.join("") === correctName) {
+                feedback.textContent = "Você acertou o gesto!";
+                currentGestureIndex++;
+
+                if (currentGestureIndex < gestures.length) {
+                    setTimeout(() => {
+                        feedback.textContent = "";
+                        loadGesture();
+                    }, 1000);
+                } else {
+                    feedback.textContent = "Você concluiu esta fase!";
+                    setTimeout(() => nextPhase(phaseIndex), 2000);
+                }
+            }
+        } else {
+            feedback.textContent = "Letra incorreta!";
+            sounds.incorrect.play();
+        }
+
+        letterInput.value = "";
+    }
+
+    submitLetterButton.addEventListener("click", checkLetter);
+
+    letterInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") checkLetter();
+    });
+
+    loadGesture();
+}
+
 function nextPhase(phaseIndex) {
     if (phaseIndex < phases.length - 1) {
-        showTutorial(phaseIndex + 1); // Exibe o tutorial antes da próxima fase
+        showTutorial(phaseIndex + 1);
     } else {
         showEndScreen();
     }
@@ -175,13 +258,13 @@ function showEndScreen() {
     restartButton.addEventListener("click", () => {
         endScreen.style.display = "none";
         gameScreen.style.display = "block";
-        showTutorial(0); // Reinicia o jogo com o tutorial da primeira fase
+        showTutorial(0);
     });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById("start-button");
     if (startButton) {
-        startButton.addEventListener("click", () => showTutorial(0)); // Exibe o tutorial da primeira fase ao iniciar
+        startButton.addEventListener("click", () => showTutorial(0));
     }
 });

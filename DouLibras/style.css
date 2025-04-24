@@ -227,3 +227,28 @@ input[type="text"]:focus {
 .hidden {
     visibility: hidden;
 }
+
+#tutorial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#tutorial-container div {
+    text-align: center;
+}
+
+#tutorial-container div div {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#tutorial-container p {
+    margin-top: 5px;
+    font-size: 14px;
+}

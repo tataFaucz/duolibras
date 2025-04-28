@@ -34,14 +34,14 @@ function generateGreetings() {
 
 function generateIntroduction() {
     return [
-        { name: "Qual o seu nome?", image: `${imagePath}apresentacao/seu_nome.jpg` },
+        { name: "Qual o seu nome", image: `${imagePath}apresentacao/seu_nome.jpg` },
         { name: "Prazer em te conhecer", image: `${imagePath}apresentacao/prazer_conhecer.jpg` },
-        { name: "Quando?", image: `${imagePath}apresentacao/quando.jpg` },
-        { name: "Quem?", image: `${imagePath}apresentacao/quem.jpg` },
+        { name: "Quando", image: `${imagePath}apresentacao/quando.jpg` },
+        { name: "Quem", image: `${imagePath}apresentacao/quem.jpg` },
         { name: "Perguntar", image: `${imagePath}apresentacao/perguntar.jpg` },
-        { name: "Por quê?", image: `${imagePath}apresentacao/porque.jpg` },
-        { name: "O que?", image: `${imagePath}apresentacao/oque.jpg` },
-        { name: "Onde?", image: `${imagePath}apresentacao/onde.jpg` },
+        { name: "Por que", image: `${imagePath}apresentacao/porque.jpg` },
+        { name: "O que", image: `${imagePath}apresentacao/oque.jpg` },
+        { name: "Onde", image: `${imagePath}apresentacao/onde.jpg` },
     ];
 }
 
@@ -108,8 +108,10 @@ function startStandardPhase(phase, phaseIndex) {
         <h2>${phase.name}</h2>
         <p>Qual é o significado deste gesto?</p>
         <div id="gesture"></div>
-        <input type="text" id="answer" placeholder="Digite sua resposta">
-        <button id="submit-button">Enviar</button>
+        <div id="answer-container">
+            <input type="text" id="answer" placeholder="Digite sua resposta">
+            <button id="submit-button">Enviar</button>
+        </div>
         <p id="feedback"></p>
     `;
 
@@ -129,6 +131,7 @@ function startStandardPhase(phase, phaseIndex) {
 
         if (userAnswer === correctAnswer) {
             feedback.textContent = "Correto!";
+            feedback.className = "correct";
             sounds.correct.play();
             currentGestureIndex++;
 
@@ -141,6 +144,7 @@ function startStandardPhase(phase, phaseIndex) {
             }
         } else {
             feedback.textContent = "Errado! Tente novamente.";
+            feedback.className = "incorrect";
             sounds.incorrect.play();
         }
     }

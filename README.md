@@ -7,14 +7,14 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 ### Arquivos Principais
 
 - **`index.html`**: Estrutura principal do jogo.
-- **`style.css`**: Estilos visuais do jogo, incluindo animações, layout e suporte a temas claro/escuro.
+- **`style.css`**: Estilos visuais do jogo, incluindo layout, suporte a temas claro/escuro e design responsivo.
 - **`script.js`**: Lógica do jogo, incluindo fases, interações, tutoriais, manipulação de DOM e alternância de temas.
 
 ---
 
 ### Recursos
 
-- **Imagens**: Localizadas na pasta `images/`, organizadas por categorias como `alfabeto`, `apresentacao` e `saudacao`.
+- **Imagens**: Localizadas na pasta `images/`, organizadas por categorias como `alfabeto`, `apresentacao` e `saudacao`. As imagens das fases (`fase1.jpg`, `fase2.jpg`, `fase3.jpg`) também estão nesta pasta.
 - **Sons**: Sons de feedback (`correct.mp3` e `incorrect.mp3`) na pasta `sounds/`.
 
 ---
@@ -25,6 +25,7 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 
    - Um botão fixo no canto superior direito permite alternar entre os modos claro e escuro.
    - O botão exibe uma lua no modo claro e um sol no modo escuro.
+   - Apenas o fundo do jogo muda de cor, enquanto os demais elementos mantêm suas cores originais.
    - O tema selecionado é salvo no navegador e restaurado ao recarregar a página.
 
 2. **Tutorial Antes de Cada Fase**
@@ -44,19 +45,19 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 
    - O jogador aprende frases comuns em Libras.
 
-6. **Feedback Visual e Sonoro**
-
-   - Feedback imediato para respostas corretas ou incorretas, com sons e mensagens visuais.
-
-7. **Reinício do Jogo**
-
-   - Após concluir todas as fases, o jogador pode reiniciar o jogo, começando novamente pelo tutorial da primeira fase.
-
-8. **Quadro de Fases**
+6. **Quadro de Fases**
 
    - Um quadro fixo exibe as fases disponíveis.
    - As fases bloqueadas são exibidas com um estilo diferenciado.
    - O quadro permanece com um fundo cinza fixo, independentemente do tema selecionado.
+
+7. **Feedback Visual e Sonoro**
+
+   - Feedback imediato para respostas corretas ou incorretas, com sons e mensagens visuais.
+
+8. **Reinício do Jogo**
+
+   - Após concluir todas as fases, o jogador pode reiniciar o jogo, começando novamente pelo tutorial da primeira fase.
 
 ---
 
@@ -85,7 +86,7 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 - **Fixação de Estilos no Quadro de Fases**: O quadro das fases e seu conteúdo permanecem com cores fixas, independentemente do tema.
 - **Adição de Tutoriais**: Cada fase agora possui um tutorial com imagens e significados.
 - **Feedback Aprimorado**: Mensagens visuais e sons para respostas corretas e incorretas.
-- **Reinício com Tutorial**: O jogo reinicia exibindo o tutorial da primeira fase.
+- **Imagens das Fases**: Cada fase possui uma imagem representativa no quadro de seleção.
 
 ---
 
@@ -94,6 +95,8 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 - Adicionar mais fases e categorias de gestos.
 - Implementar suporte a dispositivos móveis.
 - Adicionar um sistema de pontuação para incentivar o aprendizado.
+- Criar uma tela de configurações para personalizar o jogo (ex.: volume, redefinir progresso).
+- Adicionar animações para transições entre telas e feedback visual.
 
 ---
 

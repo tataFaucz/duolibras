@@ -50,7 +50,7 @@ const phases = [
         name: "Fase 1: Alfabeto e Números",
         gestures: generateAlphabetNumbers(),
         unlocked: true,
-        image: `${imagePath}fase1.jpg`
+        image: `${imagePath}fase1.png`
     },
     {
         name: "Fase 2: Saudações Básicas",

@@ -49,15 +49,21 @@ const phases = [
     {
         name: "Fase 1: Alfabeto e Números",
         gestures: generateAlphabetNumbers(),
+        unlocked: true,
+        image: `${imagePath}fase1.jpg`
     },
     {
         name: "Fase 2: Saudações Básicas",
         gestures: generateGreetings(),
         type: "forca",
+        unlocked: false,
+        image: `${imagePath}fase2.jpg`
     },
     {
         name: "Fase 3: Falas Cotidianas",
         gestures: generateIntroduction(),
+        unlocked: false,
+        image: `${imagePath}fase3.jpg`
     },
 ];
 
@@ -69,9 +75,58 @@ function shuffleArray(array) {
     return array;
 }
 
+function showPhaseSelection() {
+    const gameScreen = document.getElementById("game-screen");
+    const phaseSelection = document.getElementById("phase-selection");
+    const phasesContainer = document.getElementById("phases-container");
+
+    gameScreen.style.display = "none";
+    phaseSelection.style.display = "block";
+
+    phasesContainer.innerHTML = phases
+        .map((phase, index) => `
+            <div class="phase-box ${phase.unlocked ? "" : "locked"}" data-index="${index}">
+                <img src="${phase.image}" alt="${phase.name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+            </div>
+        `)
+        .join("");
+
+    document.querySelectorAll(".phase-box").forEach((box) => {
+        box.addEventListener("click", () => {
+            const index = parseInt(box.getAttribute("data-index"), 10);
+            if (phases[index].unlocked) {
+                showTutorial(index);
+            }
+        });
+    });
+
+    const backToStartButton = document.getElementById("back-to-start-button");
+    backToStartButton.addEventListener("click", showStartScreen);
+}
+
+function showStartScreen() {
+    const gameScreen = document.getElementById("game-screen");
+    const phaseSelection = document.getElementById("phase-selection");
+
+    phaseSelection.style.display = "none";
+    gameScreen.style.display = "block";
+
+    gameScreen.innerHTML = `
+        <p id="introduction">Bem-vindo ao DuoLibras! Clique em "Iniciar" para começar a aprender e jogar.</p>
+        <button id="start-button" aria-label="Iniciar o jogo">Iniciar</button>
+    `;
+
+    const startButton = document.getElementById("start-button");
+    startButton.addEventListener("click", showPhaseSelection);
+}
+
 function showTutorial(phaseIndex) {
     const phase = phases[phaseIndex];
     const gameScreen = document.getElementById("game-screen");
+    const phaseSelection = document.getElementById("phase-selection");
+
+    phaseSelection.style.display = "none";
+    gameScreen.style.display = "block";
 
     gameScreen.innerHTML = `
         <h2>Tutorial: ${phase.name}</h2>
@@ -140,7 +195,7 @@ function startStandardPhase(phase, phaseIndex) {
                 loadGesture();
             } else {
                 feedback.textContent = "Você concluiu esta fase!";
-                setTimeout(() => nextPhase(phaseIndex), 2000);
+                setTimeout(() => completePhase(phaseIndex), 2000);
             }
         } else {
             feedback.textContent = "Errado! Tente novamente.";
@@ -223,7 +278,7 @@ function startHangmanPhase(phase, phaseIndex) {
                     }, 1000);
                 } else {
                     feedback.textContent = "Você concluiu esta fase!";
-                    setTimeout(() => nextPhase(phaseIndex), 2000);
+                    setTimeout(() => completePhase(phaseIndex), 2000);
                 }
             }
         } else {
@@ -243,32 +298,42 @@ function startHangmanPhase(phase, phaseIndex) {
     loadGesture();
 }
 
-function nextPhase(phaseIndex) {
+function completePhase(phaseIndex) {
     if (phaseIndex < phases.length - 1) {
-        showTutorial(phaseIndex + 1);
+        phases[phaseIndex + 1].unlocked = true;
     } else {
-        showEndScreen();
+        phases.forEach(phase => phase.unlocked = true); 
     }
+    showPhaseSelection();
 }
 
-function showEndScreen() {
-    const gameScreen = document.getElementById("game-screen");
-    const endScreen = document.getElementById("end-screen");
-
-    gameScreen.style.display = "none";
-    endScreen.style.display = "flex";
-
-    const restartButton = document.getElementById("restart-button");
-    restartButton.addEventListener("click", () => {
-        endScreen.style.display = "none";
-        gameScreen.style.display = "block";
-        showTutorial(0);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("start-button");
-    if (startButton) {
-        startButton.addEventListener("click", () => showTutorial(0));
+    const restartButton = document.getElementById("restart-button");
+    const themeToggle = document.getElementById("theme-toggle");
+
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.body.classList.add(currentTheme + "-mode");
+    themeToggle.textContent = currentTheme === "light" ? "🌙" : "☀️";
+
+    themeToggle.addEventListener("click", () => {
+        const isLightMode = document.body.classList.contains("light-mode");
+        document.body.classList.toggle("light-mode", !isLightMode);
+        document.body.classList.toggle("dark-mode", isLightMode);
+
+        themeToggle.textContent = isLightMode ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", isLightMode ? "dark" : "light");
+    });
+
+    startButton.addEventListener("click", showPhaseSelection);
+
+    if (restartButton) {
+        restartButton.addEventListener("click", () => {
+            phases.forEach((phase, index) => {
+                phase.unlocked = index === 0; 
+            });
+            showPhaseSelection();
+        });
     }
 });

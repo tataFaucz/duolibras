@@ -96,7 +96,7 @@ h1 {
 }
 
 button {
-    background: linear-gradient(45deg, #FFD700, #FFA500);
+    background: linear-gradient(45deg, #ffe96f);
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -339,30 +339,30 @@ input[type="text"]:focus {
 
 /* Modo claro */
 body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #ffffff; /* Fundo branco no modo claro */
+    color: #000000; /* Texto preto no modo claro */
 }
 
 /* Modo escuro */
 body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #000000; /* Fundo preto no modo escuro */
+    color: #000000; /* Mantém o texto na cor original */
 }
 
-/* Ajuste de cores para elementos no modo escuro */
+/* Removendo alterações de cores para outros elementos no modo escuro */
 body.dark-mode #game-container {
-    background-color: #1e1e1e;
-    color: #ffffff;
+    background-color: #F1F1F1; /* Mantém o fundo do container no modo claro */
+    color: #333; /* Mantém o texto na cor original */
 }
 
 body.dark-mode button {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #555;
+    background: linear-gradient(45deg, #da1446); /* Mantém o estilo original dos botões */
+    color: #000; /* Mantém o texto na cor original */
+    border: none;
 }
 
 body.dark-mode button:hover {
-    background-color: #444;
+    background: linear-gradient(45deg, #da1446); /* Mantém o estilo original ao passar o mouse */
 }
 
 /* O contêiner das fases e seu conteúdo não mudam de cor */

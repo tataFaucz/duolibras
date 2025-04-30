@@ -252,3 +252,141 @@ input[type="text"]:focus {
     margin-top: 5px;
     font-size: 14px;
 }
+
+#phases-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.phase-box {
+    width: 120px;
+    height: 120px;
+    background: #FFF;
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.phase-box img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.phase-box p {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    color: #333;
+}
+
+.phase-box.locked {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.phase-box.locked img {
+    filter: grayscale(100%);
+}
+
+.phase-box.locked::after {
+    content: "🔒";
+    font-size: 24px;
+    color: #000;
+    position: absolute;
+}
+
+.phase-box:hover:not(.locked) {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo do botão de alternância de tema */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1000;
+}
+
+#theme-toggle.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Modo claro */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Modo escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Ajuste de cores para elementos no modo escuro */
+body.dark-mode #game-container {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+/* O contêiner das fases e seu conteúdo não mudam de cor */
+#phases-container {
+    background-color: #d3d3d3 !important; /* Cinza fixo */
+    color: #000000 !important; /* Texto preto fixo */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#phases-container .phase-box {
+    background-color: #ffffff !important; /* Branco fixo */
+    color: #000000 !important; /* Texto preto fixo */
+    border: 2px solid #000000 !important;
+}
+
+#phases-container .phase-box img {
+    border-radius: 10px;
+}
+
+/* As frases e textos não mudam de cor */
+#game-screen p,
+#phase-selection h2,
+#end-screen h2,
+#end-screen p {
+    color: #000000 !important; /* Preto fixo */
+}

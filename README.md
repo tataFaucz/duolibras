@@ -1,6 +1,6 @@
 # DuoLibras
 
-DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasileira de Sinais) de forma divertida e acessível.
+DuoLibras é uma aplicação web interativa desenvolvida com o objetivo de promover o ensino e a aprendizagem da Língua Brasileira de Sinais (Libras) por meio de jogos educativos. O sistema foi projetado para proporcionar uma experiência lúdica e acessível, utilizando recursos visuais, desafios progressivos e feedback imediato ao usuário.
 
 ---
 
@@ -27,6 +27,7 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
    - O botão exibe uma lua no modo claro e um sol no modo escuro.
    - Apenas o fundo do jogo muda de cor, enquanto os demais elementos mantêm suas cores originais.
    - O tema selecionado é salvo no navegador e restaurado ao recarregar a página.
+   - Interface Responsiva: Layout adaptável para diferentes dispositivos, garantindo acessibilidade e usabilidade.
 
 2. **Tutorial Antes de Cada Fase**
 
@@ -48,17 +49,19 @@ DuoLibras é um jogo educativo interativo para aprender Libras (Língua Brasilei
 6. **Quadro de Fases**
 
    - Um quadro fixo exibe as fases disponíveis.
-   - As fases bloqueadas são exibidas com um estilo diferenciado.
+   - Progressão e Desbloqueio: Fases são desbloqueadas conforme o progresso do usuário, promovendo engajamento.
    - O quadro permanece com um fundo cinza fixo, independentemente do tema selecionado.
+   - Seleção de Fases: O jogo é estruturado em fases temáticas, abordando o alfabeto, números, saudações e frases cotidianas em Libras.
 
 7. **Feedback Visual e Sonoro**
 
    - Feedback imediato para respostas corretas ou incorretas, com sons e mensagens visuais.
+   - Feedback Imediato: O sistema fornece respostas auditivas e visuais para acertos e erros, incentivando o aprendizado contínuo.
 
 8. **Reinício do Jogo**
 
    - Após concluir todas as fases, o jogador pode reiniciar o jogo, começando novamente pelo tutorial da primeira fase.
-
+  
 ---
 
 ## Como Jogar
@@ -108,4 +111,12 @@ Este projeto foi desenvolvido para promover o aprendizado de Libras de forma int
 
 ## Licença
 
-Este projeto ainda não tem a devida licença necessária.
+Este projeto é de caráter acadêmico e está disponível para fins educacionais.
+
+---
+
+## Acesso ao Jogo
+O DuoLibras está disponível para acesso público no seguinte endereço:
+
+https://tatafaucz.github.io/duolibras/
+

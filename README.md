@@ -115,4 +115,4 @@ Projeto de caráter acadêmico, disponível para fins educacionais e não comerc
 
 Acesse o DuoLibras diretamente no navegador:
 
-👉 [https://tatafaucz.github.io/duolibras/(https://tatafaucz.github.io/duolibras/)
+👉 https://tatafaucz.github.io/duolibras/

@@ -1,122 +1,118 @@
 # DuoLibras
 
-DuoLibras é uma aplicação web interativa desenvolvida com o objetivo de promover o ensino e a aprendizagem da Língua Brasileira de Sinais (Libras) por meio de jogos educativos. O sistema foi projetado para proporcionar uma experiência lúdica e acessível, utilizando recursos visuais, desafios progressivos e feedback imediato ao usuário.
+**DuoLibras** é uma aplicação web interativa voltada ao ensino e aprendizagem da **Língua Brasileira de Sinais (Libras)** por meio de jogos educativos. Desenvolvido com foco na acessibilidade, o sistema proporciona uma experiência lúdica, com desafios progressivos, recursos visuais e feedbacks imediatos que facilitam a imersão no conteúdo.
 
 ---
 
-### Arquivos Principais
+## 📁 Estrutura do Projeto
 
-- **`index.html`**: Estrutura principal do jogo.
-- **`style.css`**: Estilos visuais do jogo, incluindo layout, suporte a temas claro/escuro e design responsivo.
-- **`script.js`**: Lógica do jogo, incluindo fases, interações, tutoriais, manipulação de DOM e alternância de temas.
+* **`index.html`** – Estrutura base da aplicação.
+* **`style.css`** – Estilização, suporte a tema claro/escuro e layout responsivo.
+* **`script.js`** – Lógica do jogo: controle de fases, interações, tutoriais, manipulação de DOM e tema.
 
----
+### Recursos adicionais
 
-### Recursos
-
-- **Imagens**: Localizadas na pasta `images/`, organizadas por categorias como `alfabeto`, `apresentacao` e `saudacao`. As imagens das fases (`fase1.jpg`, `fase2.jpg`, `fase3.jpg`) também estão nesta pasta.
-- **Sons**: Sons de feedback (`correct.mp3` e `incorrect.mp3`) na pasta `sounds/`.
+* **Imagens**: Localizadas na pasta `images/`, organizadas por categorias (`alfabeto`, `apresentacao`, `saudacao`) e imagens representativas das fases (`fase1.jpg`, `fase2.jpg`, `fase3.jpg`).
+* **Áudios**: Sons de acerto (`correct.mp3`) e erro (`incorrect.mp3`) na pasta `sounds/`.
 
 ---
 
-## Funcionalidades
+## ✨ Funcionalidades
 
-1. **Alternância de Tema (Claro/Escuro)**
+### 🌗 Alternância de Tema (Claro/Escuro)
 
-   - Um botão fixo no canto superior direito permite alternar entre os modos claro e escuro.
-   - O botão exibe uma lua no modo claro e um sol no modo escuro.
-   - Apenas o fundo do jogo muda de cor, enquanto os demais elementos mantêm suas cores originais.
-   - O tema selecionado é salvo no navegador e restaurado ao recarregar a página.
-   - Interface Responsiva: Layout adaptável para diferentes dispositivos, garantindo acessibilidade e usabilidade.
+* Botão fixo no canto superior direito.
+* Ícones: lua (modo claro) e sol (modo escuro).
+* Apenas o fundo é alterado; demais elementos mantêm suas cores.
+* Preferência salva no navegador e restaurada automaticamente.
+* Layout responsivo para dispositivos móveis.
 
-2. **Tutorial Antes de Cada Fase**
+### 📘 Tutoriais Interativos
 
-   - Antes de cada fase, o jogador visualiza um tutorial com todas as imagens e seus significados.
-   - O tutorial ajuda o jogador a se familiarizar com os gestos antes de começar.
+* Antes de cada fase, o jogador acessa um tutorial com imagens e seus significados.
+* Auxilia na preparação para os desafios seguintes.
 
-3. **Fase 1: Alfabeto e Números**
+### 🧩 Fases do Jogo
 
-   - O jogador deve identificar o significado de gestos representando letras e números.
+1. **Fase 1 – Alfabeto e Números**
+   Identificação de gestos correspondentes a letras e números.
 
-4. **Fase 2: Saudações Básicas**
+2. **Fase 2 – Saudações Básicas**
+   Jogo de forca com palavras relacionadas a cumprimentos em Libras.
 
-   - Inclui um jogo de forca onde o jogador deve adivinhar palavras relacionadas a saudações.
+3. **Fase 3 – Frases Cotidianas**
+   Aprendizado de expressões comuns do dia a dia.
 
-5. **Fase 3: Falas Cotidianas**
+### 📋 Quadro de Fases
 
-   - O jogador aprende frases comuns em Libras.
+* Interface fixa com visualização das fases disponíveis.
+* Fases são desbloqueadas progressivamente conforme o desempenho.
+* Cores fixas, independente do tema escolhido.
 
-6. **Quadro de Fases**
+### 🔊 Feedback Imediato
 
-   - Um quadro fixo exibe as fases disponíveis.
-   - Progressão e Desbloqueio: Fases são desbloqueadas conforme o progresso do usuário, promovendo engajamento.
-   - O quadro permanece com um fundo cinza fixo, independentemente do tema selecionado.
-   - Seleção de Fases: O jogo é estruturado em fases temáticas, abordando o alfabeto, números, saudações e frases cotidianas em Libras.
+* Respostas visuais e sonoras para acertos e erros.
+* Estímulo contínuo ao aprendizado.
 
-7. **Feedback Visual e Sonoro**
+### 🔄 Reinício do Jogo
 
-   - Feedback imediato para respostas corretas ou incorretas, com sons e mensagens visuais.
-   - Feedback Imediato: O sistema fornece respostas auditivas e visuais para acertos e erros, incentivando o aprendizado contínuo.
-
-8. **Reinício do Jogo**
-
-   - Após concluir todas as fases, o jogador pode reiniciar o jogo, começando novamente pelo tutorial da primeira fase.
-  
----
-
-## Como Jogar
-
-1. Abra o arquivo `index.html` em um navegador.
-2. Clique no botão "Iniciar" para começar o jogo.
-3. Visualize o tutorial da fase atual e clique em "Iniciar Fase" para começar.
-4. Complete as fases respondendo corretamente aos desafios apresentados.
-5. Receba feedback visual e sonoro para cada resposta.
-6. Após concluir todas as fases, clique em "Jogar Novamente" para reiniciar o jogo.
+* Ao concluir todas as fases, é possível reiniciar o progresso e jogar novamente desde o início.
 
 ---
 
-## Tecnologias Utilizadas
+## ▶️ Como Jogar
 
-- **HTML5**: Estrutura do jogo.
-- **CSS3**: Estilização, suporte a temas claro/escuro e animações.
-- **JavaScript**: Lógica do jogo, manipulação de elementos e persistência de tema.
-
----
-
-## Melhorias Recentes
-
-- **Adição de Alternância de Tema**: Botão fixo para alternar entre os modos claro e escuro, com persistência no navegador.
-- **Fixação de Estilos no Quadro de Fases**: O quadro das fases e seu conteúdo permanecem com cores fixas, independentemente do tema.
-- **Adição de Tutoriais**: Cada fase agora possui um tutorial com imagens e significados.
-- **Feedback Aprimorado**: Mensagens visuais e sons para respostas corretas e incorretas.
-- **Imagens das Fases**: Cada fase possui uma imagem representativa no quadro de seleção.
+1. Abra o arquivo `index.html` em um navegador moderno.
+2. Clique em **Iniciar** para começar.
+3. Siga o tutorial da fase atual.
+4. Complete os desafios propostos.
+5. Receba feedbacks visuais e sonoros.
+6. Após terminar todas as fases, clique em **Jogar Novamente** para reiniciar.
 
 ---
 
-## Melhorias Futuras
+## 🛠 Tecnologias Utilizadas
 
-- Adicionar mais fases e categorias de gestos.
-- Implementar suporte a dispositivos móveis.
-- Adicionar um sistema de pontuação para incentivar o aprendizado.
-- Criar uma tela de configurações para personalizar o jogo (ex.: volume, redefinir progresso).
-- Adicionar animações para transições entre telas e feedback visual.
+* **HTML5** – Estrutura semântica da aplicação.
+* **CSS3** – Design responsivo e alternância de temas.
+* **JavaScript (Vanilla)** – Controle das fases, interações, lógica de jogo e salvamento de estado.
 
 ---
 
-## Créditos
+## 📌 Melhorias Recentes
 
-Este projeto foi desenvolvido para promover o aprendizado de Libras de forma interativa e divertida. Visa ser uma ferramenta assistiva de letramento da Língua de Sinais Brasileira, desenvolvido pela aluna Thais Faucz Jasse dentro do Projeto de Extensão Assistiva da UDESC CCT.
-
----
-
-## Licença
-
-Este projeto é de caráter acadêmico e está disponível para fins educacionais.
+* Implementação do **tema claro/escuro** com persistência de estado.
+* **Quadro de fases** com design fixo e responsivo.
+* **Tutoriais visuais** com gestos e significados antes de cada fase.
+* **Feedback sonoro e visual** para respostas corretas/incorretas.
+* Inclusão de **imagens representativas** nas seleções de fase.
 
 ---
 
-## Acesso ao Jogo
-O DuoLibras está disponível para acesso público no seguinte endereço:
+## 🚀 Melhorias Futuras
 
-https://tatafaucz.github.io/duolibras/
+* Novas fases e categorias de aprendizado.
+* Otimização completa para dispositivos móveis.
+* Sistema de pontuação para gamificação.
+* Tela de configurações (volume, reset de progresso, etc.).
+* Animações para transições e feedbacks visuais.
 
+---
+
+## 🙋‍♀️ Sobre o Projeto
+
+Este projeto foi desenvolvido por **Thais Faucz Jasse**, como parte do **Projeto de Extensão Assistiva da UDESC CCT**. O DuoLibras tem como missão facilitar o acesso à Libras por meio de uma ferramenta divertida, inclusiva e educacional.
+
+---
+
+## 📄 Licença
+
+Projeto de caráter acadêmico, disponível para fins educacionais e não comerciais.
+
+---
+
+## 🌐 Acesso ao Jogo
+
+Acesse o DuoLibras diretamente no navegador:
+
+👉 [https://tatafaucz.github.io/duolibras/(https://tatafaucz.github.io/duolibras/)

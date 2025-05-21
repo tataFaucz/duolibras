@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#gesture {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+#gesture.correct {
+    animation: zoomIn 0.5s ease-in-out, flashGreen 1s ease-in-out;
+    border-color: #28a745;
+}
+
+#gesture.incorrect {
+    animation: shake 0.5s ease-in-out, flashRed 1s ease-in-out;
+    border-color: #dc3545;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+@keyframes flashGreen {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: #d4edda; }
+}
+
+@keyframes flashRed {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: #f8d7da; }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Press Start 2P", Arial, sans-serif;
+    background: linear-gradient(180deg, #5AD0FF, #87CEFA); 
+    color: #333;
+    text-align: center;
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode #game-container {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode button {
+    background: linear-gradient(45deg, #444, #666);
+    color: #fff;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #F1F1F1;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px #A9A9A9;
+}
+
+h1 {
+    color: #FF6347; 
+    margin-bottom: 20px;
+    /*animation: bounce 1.5s infinite;*/
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+#game-screen {
+    padding: 20px;
+    background: #FFF;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+button {
+    background: linear-gradient(45deg, #ffe96f);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#hangman {
+    margin: 20px auto;
+    width: 200px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#gesture-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.gesture-box {
+    width: 200px; 
+    height: 200px; 
+    border: 2px solid #000; 
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto;
+    box-shadow: 5px 5px #A9A9A9;
+}
+
+#end-screen h2 {
+    color: #FF6347;
+    margin-bottom: 20px;
+}
+
+#restart-button {
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+}
+
+input[type="text"]:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.mascot img {
+    margin-top: 20px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#progress-bar div {
+    height: 100%;
+    width: 0;
+    background: #28a745;
+    transition: width 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    #game-container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    #gesture {
+        width: 150px;
+        height: 150px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    input[type="text"] {
+        width: 90%;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#tutorial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#tutorial-container div {
+    text-align: center;
+}
+
+#tutorial-container div div {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#tutorial-container p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+#phases-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.phase-box {
+    width: 120px;
+    height: 120px;
+    background: #FFF;
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.phase-box img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.phase-box p {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    color: #333;
+}
+
+.phase-box.locked {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.phase-box.locked img {
+    filter: grayscale(100%);
+}
+
+.phase-box.locked::after {
+    content: "🔒";
+    font-size: 24px;
+    color: #000;
+    position: absolute;
+}
+
+.phase-box:hover:not(.locked) {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo do botão de alternância de tema */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1000;
+}
+
+#theme-toggle.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Modo claro */
+body.light-mode {
+    background-color: #ffffff; /* Fundo branco no modo claro */
+    color: #000000; /* Texto preto no modo claro */
+}
+
+/* Modo escuro */
+body.dark-mode {
+    background-color: #000000; /* Fundo preto no modo escuro */
+    color: #000000; /* Mantém o texto na cor original */
+}
+
+/* Removendo alterações de cores para outros elementos no modo escuro */
+body.dark-mode #game-container {
+    background-color: #F1F1F1; /* Mantém o fundo do container no modo claro */
+    color: #333; /* Mantém o texto na cor original */
+}
+
+body.dark-mode button {
+    background: linear-gradient(45deg, #da1446); /* Mantém o estilo original dos botões */
+    color: #000; /* Mantém o texto na cor original */
+    border: none;
+}
+
+body.dark-mode button:hover {
+    background: linear-gradient(45deg, #da1446); /* Mantém o estilo original ao passar o mouse */
+}
+
+/* O contêiner das fases e seu conteúdo não mudam de cor */
+#phases-container {
+    background-color: #d3d3d3 !important; /* Cinza fixo */
+    color: #000000 !important; /* Texto preto fixo */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#phases-container .phase-box {
+    background-color: #ffffff !important; /* Branco fixo */
+    color: #000000 !important; /* Texto preto fixo */
+    border: 2px solid #000000 !important;
+}
+
+#phases-container .phase-box img {
+    border-radius: 10px;
+}
+
+/* As frases e textos não mudam de cor */
+#game-screen p,
+#phase-selection h2,
+#end-screen h2,
+#end-screen p {
+    color: #000000 !important; /* Preto fixo */
+}

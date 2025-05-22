@@ -7,7 +7,7 @@ const sounds = {
 };
 
 function generateAlphabetNumbers() {
-    const letters = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"].map((letter) => ({
+    const letters = [..."abcdefghijklmnopqrstuvwxyz"].map((letter) => ({
         name: letter,
         image: `${imagePath}alfabeto/${letter}.jpg`,
     }));

@@ -54,10 +54,6 @@
 * Respostas visuais e sonoras para acertos e erros.
 * Estímulo contínuo ao aprendizado.
 
-### 🔄 Reinício do Jogo
-
-* Ao concluir todas as fases, é possível reiniciar o progresso e jogar novamente desde o início.
-
 ---
 
 ## ▶️ Como Jogar
@@ -67,7 +63,6 @@
 3. Siga o tutorial da fase atual.
 4. Complete os desafios propostos.
 5. Receba feedbacks visuais e sonoros.
-6. Após terminar todas as fases, clique em **Jogar Novamente** para reiniciar.
 
 ---
 

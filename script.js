@@ -165,9 +165,11 @@ function mostrarTutorial() {
         <h2>${tutorial.titulo}</h2>
         <p>${tutorial.conteudo}</p>
         <button id="start-mini-tutorial-button">Ver Mini-Tutorial</button>
+        <button id="skip-to-phase-button" style="margin-left:10px;">Pular para Fase Principal</button>
     `;
 
     document.getElementById("start-mini-tutorial-button").onclick = () => mostrarMiniTutorial();
+    document.getElementById("skip-to-phase-button").onclick = () => mostrarTutorialCompleto(currentPhase, phases.indexOf(currentPhase));
 }
 
 function mostrarMiniTutorial() {
@@ -189,9 +191,11 @@ function mostrarMiniTutorial() {
             ${gestosHtml}
         </div>
         <button id="start-mini-phase-button">Iniciar Mini-Fase</button>
+        <button id="skip-to-phase-button" style="margin-left:10px;">Pular para Fase Principal</button>
     `;
 
     document.getElementById("start-mini-phase-button").onclick = () => iniciarMiniFase();
+    document.getElementById("skip-to-phase-button").onclick = () => mostrarTutorialCompleto(currentPhase, phases.indexOf(currentPhase));
 }
 
 function iniciarMiniFase() {
@@ -260,6 +264,7 @@ function mostrarMiniFasePergunta() {
         ${gestureImage ? `<div style="width:100px;height:100px;margin:0 auto;background-image:url('${gestureImage}');background-size:cover;background-position:center;border:1px solid #ccc;border-radius:5px;"></div>` : ""}
         <input type="text" id="resposta-input" placeholder="Digite sua resposta">
         <button id="finish-mini-phase-button">Responder</button>
+        <button id="skip-to-phase-button" style="margin-left:10px;">Pular para Fase Principal</button>
         <span id="feedback"></span>
     `;
 
@@ -282,11 +287,12 @@ function mostrarMiniFasePergunta() {
             if (etapaTutorial < currentPhase.tutorial.length) {
                 mostrarTutorial();
             } else {
-                // Ao terminar todos os mini-jogos, mostra o tutorial completo antes da fase principal
                 mostrarTutorialCompleto(currentPhase, phases.indexOf(currentPhase));
             }
         }
     };
+
+    document.getElementById("skip-to-phase-button").onclick = () => mostrarTutorialCompleto(currentPhase, phases.indexOf(currentPhase));
 }
 
 function startPhase(phaseIndex) {

@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DuoLibras: Um jogo educativo para aprender Libras de forma interativa e divertida.">
-    <title>DuoLibras</title>
-    <link rel="icon" type="image/png" href="images/logo_duolibras.png">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DuoLibras: Um jogo educativo para aprender Libras de forma interativa e divertida.">
+  <title>DuoLibras</title>
+  <link rel="icon" type="image/png" href="images/logo_duolibras.png">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="game-container">
-        <header>
-            <h1>DuoLibras</h1>
-            <p id="subtitle">Aprenda Libras de forma divertida!</p>
-        </header>
-        <main>
-            <div id="game-screen">
-                <p id="introduction">Bem-vindo ao DuoLibras! Clique em "Iniciar" para começar a aprender e jogar.</p>
-                <button id="start-button" aria-label="Iniciar o jogo">Iniciar</button>
-            </div>
-            <div id="phase-selection" style="display: none;">
-                <h2>Selecione uma Fase</h2>
-                <div id="phases-container"></div>
-                <button id="back-to-start-button" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Voltar ao Início</button>
-            </div>
-            <div id="progress-bar-container" style="display: none;">
-                <div id="progress-bar">
-                    <div id="progress"></div>
-                </div>
-                <p id="progress-text">Progresso: 0%</p>
-            </div>
-            <div id="end-screen" style="display: none;">
-                <h2>Parabéns!</h2>
-                <p>Você concluiu todas as fases do DuoLibras!</p>
-                <button id="restart-button" aria-label="Reiniciar o jogo">Jogar Novamente</button>
-            </div>
-        </main>
-        <footer>
-            <p>© 2025 DuoLibras - Aprenda Libras Brincando!</p>
-        </footer>
-    </div>
-    <button id="theme-toggle" aria-label="Alternar tema"></button>
-    <script src="script.js"></script>
+<body class="light-mode">
+  <div id="game-container">
+    <header>
+      <h1>DuoLibras</h1>
+      <p id="subtitle">Aprenda Libras de forma divertida!</p>
+    </header>
+    <main>
+      <div id="game-screen">
+        <p id="introduction"> Clique em "Iniciar" para começar a jogar e aprender.</p>
+        <button id="start-button" aria-label="Iniciar o jogo">Iniciar</button>
+      </div>
+      <div id="phase-selection" class="hidden">
+        <h2>Selecione uma Fase</h2>
+        <div id="phases-container"></div>
+        <button id="back-to-start-button" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Voltar ao Início</button>
+      </div>
+      <div id="progress-bar-container" class="hidden">
+        <div id="progress-bar">
+          <div id="progress"></div>
+        </div>
+        <p id="progress-text">Progresso: 0%</p>
+      </div>
+      <div id="end-screen" class="hidden">
+        <h2>Parabéns!</h2>
+        <p>Você concluiu todas as fases do DuoLibras!</p>
+        <button id="restart-button" aria-label="Reiniciar o jogo">Jogar Novamente</button>
+      </div>
+    </main>
+    <footer>
+      <p>© 2025 DuoLibras - Aprenda Libras Brincando!</p>
+    </footer>
+  </div>
+  <button id="theme-toggle" aria-label="Alternar tema"></button>
+  <script src="script.js"></script>
 </body>
 </html>

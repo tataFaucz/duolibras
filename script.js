@@ -60,8 +60,8 @@ const phases = [
         ],
         miniFases: [
             { tipo: "vogais", titulo: "Mini-Fase: Vogais", perguntas: ["a", "e", "i", "o", "u"] },
-            { tipo: "consoantes", titulo: "Mini-Fase: Consoantes", perguntas: ["b", "c", "d", "f"] },
-            { tipo: "números", titulo: "Mini-Fase: Números", perguntas: ["0", "1", "2", "3"] }
+            { tipo: "consoantes", titulo: "Mini-Fase: Consoantes", perguntas: ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"] },
+            { tipo: "números", titulo: "Mini-Fase: Números", perguntas: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] }
         ]
     },
     {
@@ -75,7 +75,7 @@ const phases = [
             { tipo: "saudacoes", titulo: "Tutorial: Saudações", conteudo: "Veja como cumprimentar em Libras." }
         ],
         miniFases: [
-            { tipo: "saudacoes", titulo: "Mini-Fase: Saudações", perguntas: ["Oi", "Tchau", "Obrigado", "Bomdia"] }
+            { tipo: "saudacoes", titulo: "Mini-Fase: Saudações", perguntas: ["Oi", "Tchau", "Obrigado", "Desculpa"] }
         ]
     },
     {
@@ -304,12 +304,20 @@ function startPhase(phaseIndex) {
     }
 }
 
+// FASE PRINCIPAL COM DICA E LIMITE DE ERROS
 function startStandardPhase(phase, phaseIndex) {
     const gestures = shuffleArray(phase.gestures);
     let currentGestureIndex = 0;
+    let errorCount = 0;
+    let hintCount = 0;
+    const maxHints = 5;
+    const maxErrors = 5;
 
     const gameScreen = document.getElementById("game-screen");
     gameScreen.innerHTML = `
+        <div style="position:relative;">
+            <button id="hint-button" style="position:absolute;top:10px;left:10px;z-index:10;">💡 Dica (${maxHints})</button>
+        </div>
         <h2>${phase.name}</h2>
         <p>Qual é o significado deste gesto?</p>
         <div id="gesture"></div>
@@ -318,16 +326,33 @@ function startStandardPhase(phase, phaseIndex) {
             <button id="submit-button">Enviar</button>
         </div>
         <p id="feedback"></p>
+        <p id="error-count" style="color:red;">Erros: 0/${maxErrors}</p>
     `;
 
     const gestureElement = document.getElementById("gesture");
     const answerInput = document.getElementById("answer");
     const feedback = document.getElementById("feedback");
     const submitButton = document.getElementById("submit-button");
+    const hintButton = document.getElementById("hint-button");
+    const errorCountElement = document.getElementById("error-count");
 
     function loadGesture() {
         const currentGesture = gestures[currentGestureIndex];
         gestureElement.style.backgroundImage = `url(${currentGesture.image})`;
+        feedback.textContent = "";
+        answerInput.value = "";
+    }
+
+    function showHint() {
+        if (hintCount < maxHints) {
+            const currentGesture = gestures[currentGestureIndex];
+            feedback.textContent = `Dica: Começa com "${currentGesture.name[0].toUpperCase()}" e tem ${currentGesture.name.length} letras.`;
+            hintCount++;
+            hintButton.textContent = `💡 Dica (${maxHints - hintCount})`;
+            if (hintCount >= maxHints) {
+                hintButton.disabled = true;
+            }
+        }
     }
 
     function checkAnswer() {
@@ -339,18 +364,24 @@ function startStandardPhase(phase, phaseIndex) {
             feedback.className = "correct";
             sounds.correct.play();
             currentGestureIndex++;
+            errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
 
             if (currentGestureIndex < gestures.length) {
-                answerInput.value = "";
                 loadGesture();
             } else {
                 feedback.textContent = "Você concluiu esta fase!";
                 setTimeout(() => completePhase(phaseIndex), 2000);
             }
         } else {
+            errorCount++;
             feedback.textContent = "Errado! Tente novamente.";
             feedback.className = "incorrect";
             sounds.incorrect.play();
+            errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
+            if (errorCount >= maxErrors) {
+                feedback.textContent = "Você atingiu o limite de erros. A fase será reiniciada.";
+                setTimeout(() => startStandardPhase(phase, phaseIndex), 2000);
+            }
         }
     }
 
@@ -358,6 +389,7 @@ function startStandardPhase(phase, phaseIndex) {
     answerInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") checkAnswer();
     });
+    hintButton.addEventListener("click", showHint);
 
     loadGesture();
 }
@@ -366,9 +398,16 @@ function startHangmanPhase(phase, phaseIndex) {
     const gestures = shuffleArray(phase.gestures);
     let currentGestureIndex = 0;
     let progress = [];
+    let errorCount = 0;
+    let hintCount = 0;
+    const maxHints = 5;
+    const maxErrors = 5;
 
     const gameScreen = document.getElementById("game-screen");
     gameScreen.innerHTML = `
+        <div style="position:relative;">
+            <button id="hint-button" style="position:absolute;top:10px;left:10px;z-index:10;">💡 Dica (${maxHints})</button>
+        </div>
         <h2>${phase.name}</h2>
         <p>Digite a letra correta para este gesto!</p>
         <div id="gesture"></div>
@@ -376,6 +415,7 @@ function startHangmanPhase(phase, phaseIndex) {
         <input type="text" id="letter" maxlength="1" placeholder="Digite uma letra">
         <button id="submit-letter">Enviar</button>
         <p id="feedback"></p>
+        <p id="error-count" style="color:red;">Erros: 0/${maxErrors}</p>
     `;
 
     const gestureElement = document.getElementById("gesture");
@@ -383,12 +423,28 @@ function startHangmanPhase(phase, phaseIndex) {
     const letterInput = document.getElementById("letter");
     const feedback = document.getElementById("feedback");
     const submitLetterButton = document.getElementById("submit-letter");
+    const hintButton = document.getElementById("hint-button");
+    const errorCountElement = document.getElementById("error-count");
 
     function loadGesture() {
         const currentGesture = gestures[currentGestureIndex];
         gestureElement.style.backgroundImage = `url(${currentGesture.image})`;
         progress = Array(currentGesture.name.length).fill("_");
         updateProgress();
+        feedback.textContent = "";
+        letterInput.value = "";
+    }
+
+    function showHint() {
+        if (hintCount < maxHints) {
+            const currentGesture = gestures[currentGestureIndex];
+            feedback.textContent = `Dica: Começa com "${currentGesture.name[0].toUpperCase()}" e tem ${currentGesture.name.length} letras.`;
+            hintCount++;
+            hintButton.textContent = `💡 Dica (${maxHints - hintCount})`;
+            if (hintCount >= maxHints) {
+                hintButton.disabled = true;
+            }
+        }
     }
 
     function updateProgress() {
@@ -419,6 +475,7 @@ function startHangmanPhase(phase, phaseIndex) {
             if (progress.join("") === correctName) {
                 feedback.textContent = "Você acertou o gesto!";
                 currentGestureIndex++;
+                errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
 
                 if (currentGestureIndex < gestures.length) {
                     setTimeout(() => {
@@ -431,8 +488,14 @@ function startHangmanPhase(phase, phaseIndex) {
                 }
             }
         } else {
+            errorCount++;
             feedback.textContent = "Letra incorreta!";
             sounds.incorrect.play();
+            errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
+            if (errorCount >= maxErrors) {
+                feedback.textContent = "Você atingiu o limite de erros. A fase será reiniciada.";
+                setTimeout(() => startHangmanPhase(phase, phaseIndex), 2000);
+            }
         }
 
         letterInput.value = "";
@@ -442,6 +505,7 @@ function startHangmanPhase(phase, phaseIndex) {
     letterInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") checkLetter();
     });
+    hintButton.addEventListener("click", showHint);
 
     loadGesture();
 }

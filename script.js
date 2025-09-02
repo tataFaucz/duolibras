@@ -6,6 +6,15 @@ const sounds = {
     incorrect: new Audio(`${soundPath}incorrect.mp3`)
 };
 
+let muted = false;
+function setMuteState(isMuted) {
+    muted = isMuted;
+    sounds.correct.muted = muted;
+    sounds.incorrect.muted = muted;
+    const muteBtn = document.getElementById("mute-toggle");
+    muteBtn.textContent = muted ? "🔇" : "🔊";
+}
+
 function generateAlphabetNumbers() {
     const letters = [..."abcdefghijklmnopqrstuvwxyz"].map((letter) => ({
         name: letter,
@@ -204,12 +213,10 @@ function iniciarMiniFase() {
 }
 
 function mostrarTutorialCompleto(phase, phaseIndex) {
-    // Mostra todos os tutoriais da fase antes do início da fase principal
     const gameScreen = document.getElementById("game-screen");
     const tutHtml = phase.tutorial.map(tut => `
     `).join("");
 
-    // Agrupa gestos por imagem e mostra todos os nomes/possíveis significados
     const gestureMap = {};
     phase.gestures.forEach(gestureObj => {
         if (!gestureMap[gestureObj.image]) {
@@ -251,7 +258,6 @@ function mostrarMiniFasePergunta() {
     const pergunta = miniFase.perguntas[etapaMiniFase];
     const gameScreen = document.getElementById("game-screen");
 
-    // Busca imagem do gesto correspondente à pergunta
     let gestureImage = "";
     if (currentPhase.gestures) {
         const gestureObj = currentPhase.gestures.find(g => g.name.toLowerCase() === pergunta.toLowerCase());
@@ -272,10 +278,10 @@ function mostrarMiniFasePergunta() {
         const resposta = document.getElementById("resposta-input").value.trim();
         if (resposta.toLowerCase() === pergunta.toLowerCase()) {
             document.getElementById("feedback").textContent = "✅ Correto!";
-            sounds.correct.play();
+            if (!muted) sounds.correct.play();
         } else {
             document.getElementById("feedback").textContent = "❌ Errado, tente novamente.";
-            sounds.incorrect.play();
+            if (!muted) sounds.incorrect.play();
             return;
         }
 
@@ -304,7 +310,6 @@ function startPhase(phaseIndex) {
     }
 }
 
-// FASE PRINCIPAL COM DICA REDONDA E LIMITE DE ERROS
 function startStandardPhase(phase, phaseIndex) {
     const gestures = shuffleArray(phase.gestures);
     let currentGestureIndex = 0;
@@ -381,7 +386,7 @@ function startStandardPhase(phase, phaseIndex) {
         if (userAnswer === correctAnswer) {
             feedback.textContent = "Correto!";
             feedback.className = "correct";
-            sounds.correct.play();
+            if (!muted) sounds.correct.play();
             currentGestureIndex++;
             errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
 
@@ -395,7 +400,7 @@ function startStandardPhase(phase, phaseIndex) {
             errorCount++;
             feedback.textContent = "Errado! Tente novamente.";
             feedback.className = "incorrect";
-            sounds.incorrect.play();
+            if (!muted) sounds.incorrect.play();
             errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
             if (errorCount >= maxErrors) {
                 feedback.textContent = "Você atingiu o limite de erros. A fase será reiniciada.";
@@ -501,7 +506,7 @@ function startHangmanPhase(phase, phaseIndex) {
 
         if (correctName.includes(letter)) {
             feedback.textContent = "Letra correta!";
-            sounds.correct.play();
+            if (!muted) sounds.correct.play();
 
             for (let i = 0; i < correctName.length; i++) {
                 if (correctName[i] === letter) {
@@ -528,7 +533,7 @@ function startHangmanPhase(phase, phaseIndex) {
         } else {
             errorCount++;
             feedback.textContent = "Letra incorreta!";
-            sounds.incorrect.play();
+            if (!muted) sounds.incorrect.play();
             errorCountElement.textContent = `Erros: ${errorCount}/${maxErrors}`;
             if (errorCount >= maxErrors) {
                 feedback.textContent = "Você atingiu o limite de erros. A fase será reiniciada.";
@@ -561,6 +566,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showStartScreen();
 
     const themeToggle = document.getElementById("theme-toggle");
+    const muteToggle = document.getElementById("mute-toggle");
     const currentTheme = localStorage.getItem("theme") || "light";
     document.body.classList.add(currentTheme + "-mode");
     themeToggle.textContent = currentTheme === "light" ? "🌙" : "☀️";
@@ -573,4 +579,10 @@ document.addEventListener("DOMContentLoaded", () => {
         themeToggle.textContent = isLightMode ? "☀️" : "🌙";
         localStorage.setItem("theme", isLightMode ? "dark" : "light");
     });
+
+    muteToggle.addEventListener("click", () => {
+        setMuteState(!muted);
+    });
+
+    setMuteState(false);
 });

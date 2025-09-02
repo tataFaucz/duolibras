@@ -1,7 +1,4 @@
-/* ====== Fonte ====== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-/* ====== Reset ====== */
 body {
   margin: 0;
   padding: 0;
@@ -10,19 +7,16 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* ====== Tema Claro ====== */
 body.light-mode {
   background: linear-gradient(180deg, #5AD0FF, #87CEFA);
   color: #333;
 }
 
-/* ====== Tema Escuro ====== */
 body.dark-mode {
   background: #121212;
   color: #f1f1f1;
 }
 
-/* ====== Container principal ====== */
 #game-container {
   max-width: 800px;
   margin: 40px auto;
@@ -39,7 +33,6 @@ body.dark-mode #game-container {
   border-color: #444;
 }
 
-/* ====== Títulos ====== */
 h1 {
   color: #ff6347;
   margin-bottom: 20px;
@@ -50,7 +43,6 @@ h2 {
   color: inherit;
 }
 
-/* ====== Botões ====== */
 button {
   background: linear-gradient(45deg, #ffe96f, #ffd700);
   border: none;
@@ -72,7 +64,6 @@ body.dark-mode button {
   color: #fff;
 }
 
-/* ====== Inputs ====== */
 input[type="text"] {
   padding: 10px;
   font-size: 14px;
@@ -90,7 +81,6 @@ input[type="text"]:focus {
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
 
-/* ====== Gesture box ====== */
 #gesture {
   margin: 20px auto;
   width: 200px;
@@ -103,7 +93,6 @@ input[type="text"]:focus {
   transition: border-color 0.3s;
 }
 
-/* ====== Fases ====== */
 #phases-container {
   display: flex;
   flex-wrap: wrap;
@@ -158,7 +147,6 @@ input[type="text"]:focus {
   transition: width 0.3s ease-in-out;
 }
 
-/* ====== Botão de tema ====== */
 #theme-toggle {
   position: fixed;
   top: 20px;
@@ -183,7 +171,6 @@ body.dark-mode #theme-toggle {
   color: #fff;
 }
 
-/* ====== Responsividade ====== */
 @media (max-width: 768px) {
   #game-container {
     width: 90%;
@@ -201,7 +188,42 @@ body.dark-mode #theme-toggle {
   }
 }
 
-/* ====== Esconder elementos ====== */
 .hidden {
   display: none !important;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ffe96f, #ffd700);
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#mute-toggle {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ffe96f, #ffd700);
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
 }
